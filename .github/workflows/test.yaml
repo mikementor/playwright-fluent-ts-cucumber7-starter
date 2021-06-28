@@ -28,6 +28,8 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - name: Install Playwright
+        run: npm install playwright
       - name: Install Node dependencies
         run: npm install
       - name: Run Linter
@@ -36,6 +38,7 @@ jobs:
         run: npm test
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
+        if: always()
         with:
           name: test-report
           path: reports/report.html
