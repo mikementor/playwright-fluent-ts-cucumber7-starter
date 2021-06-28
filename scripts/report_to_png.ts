@@ -1,6 +1,6 @@
 const fun = async () => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const browser = await require('playwright')['chromium'].launch({ headless: true });
+  const browser = await require('playwright-chromium')['chromium'].launch({ headless: true });
   const context = await browser.newContext();
   const page = await context.newPage();
   const reportFile =
