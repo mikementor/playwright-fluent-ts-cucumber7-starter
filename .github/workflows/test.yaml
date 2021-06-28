@@ -41,4 +41,4 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: reports # The folder the action should deploy.
-          target-folder: "reports/${{github.run_number}}"
+          target-folder: ${{ steps.generate_slug.outputs.slug }}

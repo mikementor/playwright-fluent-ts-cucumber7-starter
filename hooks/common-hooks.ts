@@ -1,5 +1,4 @@
 import { CustomWorld } from '../world';
-import { reportPageErrors, reportFailedRequests, reportRecordedRequests } from '../stories';
 import { Before, BeforeAll, AfterAll, setDefaultTimeout, After, Status } from '@cucumber/cucumber';
 import { PlaywrightFluent } from 'playwright-fluent';
 import { ITestCaseHookParameter } from '@cucumber/cucumber/lib/support_code_library_builder/types';
@@ -72,7 +71,7 @@ Before({ tags: '@live or @debug' }, async function (this: CustomWorld) {
  * Before each scenario hook
  */
 Before({ tags: '@recordRequests' }, async function (this: CustomWorld) {
-  this.p.recordRequestsTo('/');
+  // this.p.recordRequestsTo('/');
 });
 
 /**
@@ -103,9 +102,9 @@ After(async function (this: CustomWorld, testCase: ITestCaseHookParameter) {
  * After each scenario hook
  */
 After(async function (this: CustomWorld) {
-  await this.p.runStory(reportPageErrors, this);
-  await this.p.runStory(reportFailedRequests, this);
-  await this.p.runStory(reportRecordedRequests, this);
+  // await this.p.runStory(reportPageErrors, this);
+  // await this.p.runStory(reportFailedRequests, this);
+  // await this.p.runStory(reportRecordedRequests, this);
 });
 
 AfterAll(async function () {
