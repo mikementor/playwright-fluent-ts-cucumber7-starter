@@ -24,12 +24,12 @@ jobs:
       - name: Cache node dependency
         uses: actions/cache@v1
         with:
-          path: node_modules
+          path: |
+            node_modules
+            ~/.cache/ms-playwright
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-#      - name: Install Playwright
-#        run: npm install playwright
       - name: Install Node dependencies
         run: npm ci
       - name: Run Linter
@@ -37,6 +37,7 @@ jobs:
       - name: Run tests
         run: npm test
       - name: Deploy test 🚀
+        if: always()
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages # The branch the action should deploy to.
