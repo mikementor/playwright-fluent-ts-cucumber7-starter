@@ -28,10 +28,10 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Install Playwright
-        run: npm install playwright
+#      - name: Install Playwright
+#        run: npm install playwright
       - name: Install Node dependencies
-        run: npm install
+        run: npm ci
       - name: Run Linter
         run: npm run build
       - name: Run tests
@@ -41,4 +41,4 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: reports # The folder the action should deploy.
-          target-folder: reports/${{ github.event.number }}
+          target-folder: reports/$GITHUB_RUN_NUMBER
