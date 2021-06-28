@@ -1,4 +1,3 @@
-// import { expect } from 'chai';
 import {
   openPage,
   openComponent,
@@ -10,7 +9,8 @@ import {
   FormShouldBeSubmittedWithQueryParam,
 } from '../stories';
 import { CustomWorld } from '../world';
-import { Before, Given, Then, When } from '@cucumber/cucumber';
+// import { expect } from 'chai';
+import { Before, DataTable, Given, Then, When } from '@cucumber/cucumber';
 
 Given('I navigate to {string}', async function (this: CustomWorld, url: string) {
   await this.p.navigateTo(url);
@@ -63,3 +63,11 @@ Then(
 Before({ tags: '@foo' }, async function (this: CustomWorld) {
   this.foo = true;
 });
+Then(
+  /^the form should be submitted in the Query String with$/,
+  async function (this: CustomWorld, table: DataTable) {
+    // eslint-disable-next-line no-console
+    console.log(table);
+    // expect(false).to.equal(true, 'False should be true');
+  },
+);

@@ -1,0 +1,36 @@
+name: frontend
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: ['opened', 'edited', 'reopened', 'synchronize']
+jobs:
+  npm-test:
+    env:
+      CI: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - name: Cache node dependency
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install playwright dependencies
+        run: npx playwright install-deps chromium
+      - name: Install Node dependencies
+        run: npm install
+      - name: Run Linter
+        run: npm run build
+      - name: Run tests
+        run: npm test

@@ -1,7 +1,7 @@
 
 # all tags at top of file are processed by a before hook in common-hooks.ts
-@recordRequests
-
+# @recordRequests
+# @live
 Feature: Fill Form
 
     Background: Open Form Component
@@ -26,4 +26,5 @@ Feature: Fill Form
         And I select radio button "Option two"
         And I check option "Check me out"
         When I submit the form
-        Then the form should be submitted with "email" = "foo.bar@baz.com" in the Query String
+        Then the form should be submitted in the Query String with
+            | email | foo.bar@baz.com |

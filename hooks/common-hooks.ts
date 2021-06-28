@@ -47,9 +47,9 @@ Before({ tags: '@live' }, async function (this: CustomWorld) {
 /**
  * Before each scenario hook
  */
-Before({ tags: '@headfull' }, async function (this: CustomWorld) {
+Before({ tags: '@heedful' }, async function (this: CustomWorld) {
   // eslint-disable-next-line no-console
-  console.log('running in headfull mode');
+  console.log('running in heedful mode');
   this.p.withOptions({ headless: false });
 });
 
@@ -64,7 +64,7 @@ Before({ tags: '@live or @debug' }, async function (this: CustomWorld) {
   }
 
   // eslint-disable-next-line no-console
-  console.log('running in headfull mode when @live or @debug is set on the Scenario');
+  console.log('running in heedful mode when @live or @debug is set on the Scenario');
   this.p.withOptions({ headless: false });
 });
 
@@ -81,7 +81,7 @@ Before({ tags: '@recordRequests' }, async function (this: CustomWorld) {
 After(async function (this: CustomWorld, testCase: ITestCaseHookParameter) {
   if (testCase?.result?.status === Status.FAILED && this.p) {
     const screenshot: string = await this.p.takeFullPageScreenshotAsBase64();
-    await this.attach(screenshot, 'image/png');
+    await this.attach(new Buffer(screenshot, 'base64'), 'image/png');
   }
 
   if (this.p && isCI) {
