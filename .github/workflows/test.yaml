@@ -29,15 +29,15 @@ jobs:
 #      - name: Install Playwright
 #        run: npm install playwright
       - name: Install Node dependencies
-        uses: ianwalter/playwright-container@1.1.1
+        uses: ianwalter/playwright-container@ec253ce35910412cc6607f5d7cfbbe89fb77c9b4
         with:
             args: npm ci
       - name: Run Linter
-        uses: ianwalter/playwright-container@1.1.1
+        uses: ianwalter/playwright-container@ec253ce35910412cc6607f5d7cfbbe89fb77c9b4
         with:
             args: npm run build
       - name: Run tests
-        uses: ianwalter/playwright-container@1.1.1
+        uses: ianwalter/playwright-container@ec253ce35910412cc6607f5d7cfbbe89fb77c9b4
         with:
             args: npm test
       - name: Deploy test results 🚀
