@@ -36,12 +36,10 @@ jobs:
         uses: ianwalter/playwright-container@1.1
         with:
             args: npm run build
-        run: npm run build
       - name: Run tests
         uses: ianwalter/playwright-container@1.1
         with:
             args: npm test
-        run: npm test
       - name: Deploy test results 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
