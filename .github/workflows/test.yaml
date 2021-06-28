@@ -19,8 +19,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14"
-      - name: Install playwright dependencies
-        run: npx playwright install-deps chromium
       - name: Cache node dependency
         uses: actions/cache@v1
         with:
@@ -31,14 +29,22 @@ jobs:
 #      - name: Install Playwright
 #        run: npm install playwright
       - name: Install Node dependencies
-        run: npm ci
+        uses: ianwalter/playwright-container@1.1
+        with:
+            args: npm ci
       - name: Run Linter
+        uses: ianwalter/playwright-container@1.1
+        with:
+            args: npm run build
         run: npm run build
       - name: Run tests
+        uses: ianwalter/playwright-container@1.1
+        with:
+            args: npm test
         run: npm test
-      - name: Deploy test 🚀
+      - name: Deploy test results 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: reports # The folder the action should deploy.
-          target-folder: reports/$GITHUB_RUN_NUMBER
+          target-folder: "reports/$GITHUB_RUN_NUMBER"
