@@ -19,6 +19,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14"
+      - name: Install playwright dependencies
+          run: npx playwright install-deps chromium
       - name: Cache node dependency
         uses: actions/cache@v1
         with:
@@ -26,8 +28,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Install playwright dependencies
-        run: npx playwright install-deps chromium
       - name: Install Node dependencies
         run: npm install
       - name: Run Linter
