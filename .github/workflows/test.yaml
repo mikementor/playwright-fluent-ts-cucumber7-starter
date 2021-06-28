@@ -19,6 +19,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14"
+      - name: Install playwright dependencies
+        run: npx playwright install-deps chromium
       - name: Cache node dependency
         uses: actions/cache@v1
         with:
@@ -29,18 +31,12 @@ jobs:
 #      - name: Install Playwright
 #        run: npm install playwright
       - name: Install Node dependencies
-        uses: ianwalter/playwright-container@ec253ce35910412cc6607f5d7cfbbe89fb77c9b4
-        with:
-            args: npm ci
+        run: npm ci
       - name: Run Linter
-        uses: ianwalter/playwright-container@ec253ce35910412cc6607f5d7cfbbe89fb77c9b4
-        with:
-            args: npm run build
+        run: npm run build
       - name: Run tests
-        uses: ianwalter/playwright-container@ec253ce35910412cc6607f5d7cfbbe89fb77c9b4
-        with:
-            args: npm test
-      - name: Deploy test results 🚀
+        run: npm test
+      - name: Deploy test 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages # The branch the action should deploy to.
