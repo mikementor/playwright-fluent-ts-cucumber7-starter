@@ -16,7 +16,9 @@
     "report": "open reports/report.html",
     "snippets": "node ./node_modules/@cucumber/cucumber/bin/cucumber-js features/**/*.feature --dry-run --require env/set-environment-variables.ts --require world/custom-world.ts --require step-definitions/**/*.ts --require hooks/**/*.ts  --require-module ts-node/register --format-options \"{\\\"snippetInterface\\\": \\\"async-await\\\"}\" --format snippets  --publish-quiet",
     "steps-usage": "node ./node_modules/@cucumber/cucumber/bin/cucumber-js features/**/*.feature --dry-run --require env/set-environment-variables.ts --require world/custom-world.ts --require step-definitions/**/*.ts --require hooks/**/*.ts  --require-module ts-node/register --format-options \"{\\\"snippetInterface\\\": \\\"async-await\\\"}\" --format usage  --publish-quiet",
-    "test": "npm run cucumber"
+    "test": "npm run cucumber",
+    "watch": "nodemon -x 'npm test'",
+    "prepare": "husky install"
   },
   "engines": {
     "node": ">=14"
@@ -56,6 +58,12 @@
     "eslint-config-prettier": "7.1.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-prettier": "3.3.1",
+    "husky": "6.0.0",
+    "lint-staged": "11.0.0",
+    "nodemon": "2.0.7",
     "prettier": "2.2.1"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --cache --fix"
   }
 }

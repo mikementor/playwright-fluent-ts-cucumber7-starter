@@ -1,0 +1,19 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules"
+  ],
+  "verbose": true,
+  "watch": [
+    "package.json",
+    "features",
+    "hooks",
+    "step-defitions",
+    "stories",
+    "world",
+    "env"
+  ],
+
+  "ext": "ts,js,json"
+}
