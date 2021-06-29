@@ -17,6 +17,7 @@ Starter project to write E2E tests with `cucumber-js v7` and `playwright-fluent`
 
 ```
 git clone https://github.com/mikementor/playwright-fluent-ts-cucumber7-starter.git
+cd playwright-fluent-ts-cucumber7-starter
 npm install
 ```
 
